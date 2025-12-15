@@ -1,47 +1,91 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games Hub</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin: 15px 0;
-        }
-        a {
-            text-decoration: none;
-            color: #007bff;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #0056b3;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>מרכז המשחקים</title>
+  <style>
+    body {
+      font-family: Arial, "Segoe UI", Tahoma, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 40px 16px;
+      color: #222;
+      text-align: center;
+    }
+    h1 { margin-top: 0; font-size: 2rem; }
+    p { color: #444; }
+    .grid {
+      margin: 28px auto;
+      max-width: 720px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e4e7ef;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .card a {
+      display: block;
+      text-decoration: none;
+      color: #0a62d0;        /* צבע קישור ברור */
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: 2px solid #0a62d0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      transition: .18s ease;
+      background: #eef6ff;
+    }
+    .card a:hover, .card a:focus {
+      color: #fff;
+      background: #0a62d0;
+      outline: none;
+    }
+    .note {
+      font-size: .9rem;
+      color: #667;
+      margin-top: 28px;
+    }
+    .sep { color:#aaa; margin: 0 6px; }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My Games Hub</h1>
-    <p>Select a game to play:</p>
-    <ul>
-        <li>Game1/Game 1</a></li>
-        <li><a href="e 2</a></li>
-        <li>Math/Math Game</a></li>
-    </ul>
+  <h1>Welcome to My Games Hub</h1>
+  <p>בחרו משחק:</p>
+
+  <div class="grid">
+    <div class="card">
+      <!-- כתובת מלאה (מוחלטת) -->
+      <a href="https://itamarva.github.io/Gamesme 1 (URL מלא)</a>
+      <span class="sep">|</span>
+      <!-- כתובת יחסית (תעבוד אם הדף נמצא בשורש הריפו) -->
+      <a href="Game1/index 1 (יחסי)</a>
+    </div>
+
+    <div class="card">
+      https://itamarva.github.io/Games/Game2/Game 2 (URL מלא)</a>
+      <span class="sep">|</span>
+      <a href="GametmlGame 2 (יחסי)</a>
+    </div>
+
+    <div class="card">
+      <a href="https://itamarva.github.io/Games/ (URL מלא)</a>
+      <span class="sep">|</span>
+      <a hrefdex.htmlMath (יחסי)</a>
+    </div>
+  </div>
+
+  <p class="note">
+    הערה: שני הקישורים בכל כרטיס מובילים לאותו יעד. אם ב‑Settings → Pages
+    הגדרת את ה‑Folder ל‑<b>/(root)</b>, שניהם יעבדו. אם הגדרת את Pages על תיקייה
+    מסוימת (למשל <code>/Game2</code>), השתמש בקישורי ה‑URL המלאים.
+  </p>
 </body>
 </html>
-``
+
