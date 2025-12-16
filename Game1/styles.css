@@ -1,0 +1,1049 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    max-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Loader Page */
+.loader-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.loader-container {
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.game-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.loader-animation {
+    margin: 2rem 0;
+}
+
+.fashion-icon {
+    font-size: 4rem;
+    animation: bounce 1s infinite;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 1rem auto;
+}
+
+.loader-text {
+    margin: 1rem 0;
+    color: #666;
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Game Phases */
+.game-phase {
+    height: 100vh;
+    max-height: 100vh;
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.phase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.phase-header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: white;
+    flex-shrink: 0;
+    padding: 0.25rem 0;
+}
+
+.phase-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.player-info {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+}
+
+.player-indicator {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.player-indicator.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.player-indicator span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.score {
+    font-size: 0.9rem;
+}
+
+/* Intro Animation */
+.fashion-show-intro {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.fashion-show-intro h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.models-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+}
+
+.model {
+    font-size: 5rem;
+    animation: runway 2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+.intro-text {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Memory Game */
+.memory-game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.4rem;
+    width: 100%;
+    max-width: min(900px, 95vw);
+    max-height: calc(100vh - 200px);
+    margin: 0 auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+    width: 100%;
+}
+
+.memory-card::before {
+    content: '?';
+    position: absolute;
+    font-size: 2rem;
+    color: #667eea;
+    transition: opacity 0.3s;
+}
+
+.memory-card.flipped::before {
+    opacity: 0;
+}
+
+.memory-card.flipped {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.memory-card:hover:not(.flipped):not(.matched) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.game-controls {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Transition Phase */
+.transition-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 1000px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.collections-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.player-collection {
+    background: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.collection-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+
+.collection-items span {
+    padding: 0.5rem;
+    background: white;
+    border-radius: 5px;
+    cursor: default;
+}
+
+/* Trading Phase */
+.trading-section, .outfit-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 0.5rem 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.trading-section h3 {
+    margin-bottom: 1rem;
+    color: #667eea;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.players-inventory {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.player-inventory h4 {
+    margin-bottom: 0.75rem;
+    color: #667eea;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+}
+
+.inventory-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    min-height: 100px;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+
+.inventory-item {
+    font-size: 2rem;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.inventory-item:hover {
+    transform: scale(1.1);
+    border-color: #667eea;
+}
+
+.inventory-item.selected {
+    border-color: #764ba2;
+    background: #e0d5f5;
+}
+
+.btn-trade {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-trade:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.trade-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.trade-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 100px;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.pending-trade {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+    border: 3px solid #ffc107;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+.pending-trade h4 {
+    text-align: center;
+    color: #856404;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.pending-trade-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.trade-items-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+.trade-items-display span {
+    padding: 0.5rem;
+    background: white;
+    border-radius: 5px;
+}
+
+.trade-arrow {
+    font-size: 3rem;
+    color: #667eea;
+}
+
+.pending-trade-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Outfit Creation */
+.fitting-inventories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.fitting-inventory h4 {
+    margin-bottom: 0.5rem;
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.fitting-inventory .inventory-grid {
+    min-height: 80px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.outfit-creation-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.player-outfit-area h4 {
+    margin-bottom: 1rem;
+    color: #667eea;
+}
+
+.outfits-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.outfit-slot {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    padding: 1rem;
+    border-radius: 15px;
+    border: 3px dashed #667eea;
+    min-height: 300px;
+    transition: all 0.3s;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.outfit-slot:hover {
+    border-color: #764ba2;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+}
+
+.outfit-slot.drag-over {
+    border-color: #667eea;
+    background: #e0d5f5;
+}
+
+.outfit-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    min-height: 280px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.model-base {
+    font-size: 5rem;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    animation: modelPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes modelPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.model-base-large {
+    font-size: 5rem;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    animation: modelShow 1s ease-out;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes modelShow {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.outfit-item {
+    font-size: 2rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    cursor: pointer;
+    border: 3px solid #667eea;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    animation: itemAppear 0.5s ease-out;
+}
+
+@keyframes itemAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-180deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.outfit-item:hover {
+    transform: scale(1.15) rotate(5deg);
+    background: white;
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+    z-index: 3;
+}
+
+.outfit-item-display {
+    font-size: 2.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 5px;
+    border: 2px solid #667eea;
+    position: absolute;
+    z-index: 2;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.saved-outfit {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 2px solid #667eea;
+}
+
+.saved-outfit-items {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.btn-save, .btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin: 0.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-save {
+    background: #28a745;
+    color: white;
+}
+
+.btn-primary:hover, .btn-save:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#startFashionShow {
+    display: block;
+    margin: 2rem auto;
+}
+
+/* Fashion Show */
+.fashion-show-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 0.5rem;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.current-outfit-display {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    max-height: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.outfit-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+    font-size: 2rem;
+    min-height: 180px;
+    max-height: 200px;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 10px;
+    position: relative;
+    flex-direction: column;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rating-section {
+    margin-top: 0.5rem;
+}
+
+.current-rater-display {
+    margin: 1rem 0;
+}
+
+.rater-indicator {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.rater-indicator.player1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.rater-indicator.player2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    }
+}
+
+.stars-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+.star {
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: grayscale(100%);
+}
+
+.star:hover {
+    transform: scale(1.2);
+    filter: grayscale(0%);
+}
+
+.star.selected {
+    filter: grayscale(0%);
+}
+
+.star.selected ~ .star {
+    filter: grayscale(100%);
+}
+
+#ratingInstruction {
+    margin-top: 1rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Results */
+.results-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.name-input-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.name-input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.input-group input[type="text"] {
+    padding: 0.75rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.input-group input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+.input-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.scores-display {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.player-score {
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    min-width: 200px;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.winner-announcement {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    color: #667eea;
+    animation: pulse 1s infinite;
+}
+
+.restart-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Fireworks */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: firework-explode 1s ease-out forwards;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes runway {
+    0%, 100% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(50px) scale(1.2); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes firework-explode {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(20);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .memory-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.3rem;
+        max-width: min(700px, 95vw);
+    }
+    
+    .memory-card {
+        font-size: 1.2rem;
+    }
+    
+    .memory-card::before {
+        font-size: 1.5rem;
+    }
+    
+    .phase-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .game-title {
+        font-size: 1.8rem;
+    }
+    
+    .fashion-show-intro h1 {
+        font-size: 2rem;
+    }
+    
+    .models-container {
+        gap: 1rem;
+    }
+    
+    .model {
+        font-size: 3rem;
+    }
+    
+    .players-inventory {
+        grid-template-columns: 1fr;
+    }
+    
+    .outfit-creation-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .scores-display {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .memory-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.25rem;
+        max-width: min(400px, 95vw);
+    }
+    
+    .memory-card {
+        font-size: 1rem;
+    }
+    
+    .memory-card::before {
+        font-size: 1.2rem;
+    }
+    
+    .loader-container {
+        padding: 1.5rem;
+    }
+    
+    .phase-header h2 {
+        font-size: 1rem;
+    }
+    
+    .player-indicator {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+

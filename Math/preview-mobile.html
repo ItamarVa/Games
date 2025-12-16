@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Preview - Math App</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .phone-container {
+      width: 393px; /* iPhone 16 Pro width */
+      height: 852px; /* iPhone 16 Pro height */
+      background: #1c1c1e;
+      border-radius: 47px;
+      padding: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 39px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 126px;
+      height: 37px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      z-index: 1000;
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100% - 291px - 50px); /* Subtract keyboard height and top safe area */
+      border: none;
+      border-radius: 39px 39px 0 0;
+      position: absolute;
+      top: 50px; /* Start below notch/status bar area */
+      left: 0;
+      transition: height 0.3s ease;
+    }
+    
+    /* When keyboard is hidden (on grade selection), use full height */
+    iframe.keyboard-hidden {
+      height: calc(100% - 50px);
+    }
+
+    /* Mobile Keyboard Overlay */
+    .mobile-keyboard {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 291px; /* Standard iOS keyboard height */
+      background: #d1d3d6;
+      border-top: 1px solid #a1a3a6;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0 0 39px 39px;
+    }
+
+    .keyboard-top-bar {
+      height: 36px;
+      background: #d1d3d6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      border-bottom: 1px solid #a1a3a6;
+    }
+
+    .keyboard-nav-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .keyboard-arrow {
+      width: 32px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      color: #007aff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .keyboard-done {
+      color: #007aff;
+      font-size: 16px;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .keyboard-keys {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 8px;
+      background: #d1d3d6;
+    }
+
+    .keyboard-key {
+      background: #ffffff;
+      border: 1px solid #a1a3a6;
+      border-radius: 5px;
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 400;
+      color: #000;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .keyboard-key:active {
+      background: #e5e5e5;
+    }
+
+    .keyboard-key.zero {
+      grid-column: span 2;
+    }
+
+    .keyboard-key .key-letters {
+      font-size: 10px;
+      color: #666;
+      margin-top: -4px;
+      font-weight: 300;
+    }
+
+    .keyboard-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 6px;
+      padding: 0 8px 8px 8px;
+    }
+
+    .keyboard-backspace {
+      background: #ffffff;
+      border: 1px solid #a1a3a6;
+      border-radius: 5px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #000;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .info {
+      text-align: center;
+      color: #fff;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .info h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .info p {
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="phone-container">
+      <div class="notch"></div>
+      <div class="phone-screen">
+        <iframe id="mathFrame" src="Math.html"></iframe>
+        <!-- Mobile Keyboard Overlay -->
+        <div class="mobile-keyboard">
+          <div class="keyboard-top-bar">
+            <div class="keyboard-nav-arrows">
+              <button class="keyboard-arrow">⌃</button>
+              <button class="keyboard-arrow">⌄</button>
+            </div>
+            <button class="keyboard-done">Done</button>
+          </div>
+          <div class="keyboard-keys">
+            <div class="keyboard-key">
+              <span>1</span>
+            </div>
+            <div class="keyboard-key">
+              <span>2</span>
+              <span class="key-letters">ABC</span>
+            </div>
+            <div class="keyboard-key">
+              <span>3</span>
+              <span class="key-letters">DEF</span>
+            </div>
+            <div class="keyboard-key">
+              <span>4</span>
+              <span class="key-letters">GHI</span>
+            </div>
+            <div class="keyboard-key">
+              <span>5</span>
+              <span class="key-letters">JKL</span>
+            </div>
+            <div class="keyboard-key">
+              <span>6</span>
+              <span class="key-letters">MNO</span>
+            </div>
+            <div class="keyboard-key">
+              <span>7</span>
+              <span class="key-letters">PQRS</span>
+            </div>
+            <div class="keyboard-key">
+              <span>8</span>
+              <span class="key-letters">TUV</span>
+            </div>
+            <div class="keyboard-key">
+              <span>9</span>
+              <span class="key-letters">WXYZ</span>
+            </div>
+          </div>
+          <div class="keyboard-bottom-row">
+            <div></div>
+            <div class="keyboard-key zero">
+              <span>0</span>
+            </div>
+            <div class="keyboard-backspace">
+              ⌫
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <h2>📱 Mobile Preview</h2>
+      <p>Screen Size: 393 × 852 pixels<br>
+      This preview shows how the Math app looks on mobile devices<br>
+      with the virtual keyboard displayed</p>
+    </div>
+  </div>
+
+  <script>
+    // Add cache busting
+    const version = Date.now();
+    const mathFrame = document.getElementById('mathFrame');
+    const keyboard = document.querySelector('.mobile-keyboard');
+    
+    mathFrame.src = "Math.html?v=" + version;
+    
+    // Hide keyboard when on grade selection screen
+    function checkScreenAndToggleKeyboard() {
+      try {
+        const iframeDoc = mathFrame.contentDocument || mathFrame.contentWindow.document;
+        const gradeSelection = iframeDoc.getElementById('gradeSelection');
+        
+        if (gradeSelection && keyboard) {
+          // Check if grade selection screen is visible
+          const gradeSelectionStyle = iframeDoc.defaultView.getComputedStyle(gradeSelection);
+          const isGradeSelectionVisible = gradeSelectionStyle.display !== 'none' && 
+                                         gradeSelectionStyle.display !== 'flex';
+          
+          if (isGradeSelectionVisible) {
+            // Hide keyboard on grade selection screen
+            keyboard.style.display = 'none';
+            // Adjust iframe height when keyboard is hidden
+            mathFrame.style.height = 'calc(100% - 50px)';
+            mathFrame.classList.add('keyboard-hidden');
+          } else {
+            // Show keyboard on game screen
+            keyboard.style.display = 'flex';
+            // Restore iframe height when keyboard is shown
+            mathFrame.style.height = 'calc(100% - 291px - 50px)';
+            mathFrame.classList.remove('keyboard-hidden');
+          }
+        }
+      } catch (e) {
+        // Cross-origin or not loaded yet, try again
+        // Silently fail - will retry
+      }
+    }
+    
+    // Check periodically for screen changes
+    mathFrame.addEventListener('load', function() {
+      // Check immediately on load
+      setTimeout(checkScreenAndToggleKeyboard, 500);
+      
+      // Set up observer to watch for screen changes
+      setInterval(checkScreenAndToggleKeyboard, 300);
+    });
+    
+    // Also check after delays to catch initial load
+    setTimeout(checkScreenAndToggleKeyboard, 1000);
+    setTimeout(checkScreenAndToggleKeyboard, 2000);
+    setTimeout(checkScreenAndToggleKeyboard, 3000);
+  </script>
+</body>
+</html>
+
