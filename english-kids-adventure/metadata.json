@@ -1,0 +1,8 @@
+{
+  "name": "English Kids Adventure",
+  "description": "An interactive English learning app for Hebrew-speaking kids featuring stories, quizzes, AI tutoring, and video generation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
