@@ -1,8 +1,0 @@
-
-{
-  "name": "Math Game",
-  "description": "לומדה אינטראקטיבית לתרגול חשבון לכיתה ד' עם מורה פרטי מבוסס בינה מלאכותית.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
-}
