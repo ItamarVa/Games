@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Games Hub</title>
     <style>
         * {
@@ -130,13 +136,13 @@
                 <div class="game-description">תרגול מתמטיקה - Practice your math skills</div>
             </a>
 
-            <a href="https://math-game-944422325706.us-west1.run.app/" target="_blank" class="game-card">
+            <a href="https://english-kids-adventure-v2-1073301121398.us-west1.run.app/" target="_blank" class="game-card">
                 <div class="game-icon">📐</div>
                 <div class="game-title">משחק חשבון</div>
                 <div class="game-description">Math Games - Interactive math practice</div>
             </a>
 
-            <a href="https://english-kids-adventure-944422325706.us-west1.run.app/" target="_blank" class="game-card">
+            <a href="https://english-kids-adventure-v2-1073301121398.us-west1.run.app/" target="_blank" class="game-card">
                 <div class="game-icon">🗺️</div>
                 <div class="game-title">הרפתקאות באנגלית</div>
                 <div class="game-description">English Kids Adventure - Learn English through fun adventures</div>
@@ -144,5 +150,30 @@
 
         </div>
     </div>
+    <script>
+        // Force reload on mobile browsers and prevent caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+        
+        // Prevent back/forward cache
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+        
+        // Force reload if page is loaded from cache
+        window.addEventListener('focus', function() {
+            if (document.hidden === false) {
+                // Check if we need to reload (optional - can be removed if too aggressive)
+                // window.location.reload();
+            }
+        });
+    </script>
 </body>
 </html>
